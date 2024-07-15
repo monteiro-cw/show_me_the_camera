@@ -32,10 +32,12 @@ class CameraCubit extends Cubit<CameraState> {
 
       emit(
         CameraState.loaded(
-          controller: newController,
-          flashMode: FlashMode.off,
-          currentCam: _cameraArrange.getFirst(),
-          hasMultiCam: _cameraArrange.hasMulticam,
+          cameraConfig: CameraConfig(
+            controller: newController,
+            flashMode: FlashMode.off,
+            currentCam: _cameraArrange.getFirst(),
+            hasMultiCam: _cameraArrange.hasMulticam,
+          ),
         ),
       );
     } catch (_) {
@@ -46,13 +48,15 @@ class CameraCubit extends Cubit<CameraState> {
 
   Future<void> takePhoto() async {
     await state.whenOrNull(
-      loaded: (controller, _, __, ___) async {
+      loaded: (cameraConfig) async {
         try {
-          final file = await controller.takePicture();
+          final file = await cameraConfig.controller.takePicture();
           emit(
-            CameraState.captured(
-              photo: File(
-                file.path,
+            CameraState.loaded(
+              cameraConfig: cameraConfig.copyWith(
+                photoCaptured: File(
+                  file.path,
+                ),
               ),
             ),
           );
@@ -65,10 +69,10 @@ class CameraCubit extends Cubit<CameraState> {
 
   Future<void> flipCam() async {
     await state.whenOrNull(
-      loaded: (controller, flashMode, currentCam, hasMultiCam) async {
+      loaded: (cameraConfig) async {
         emit(const CameraState.changing());
         final newController = await _createAndInitController(
-          _cameraArrange.getOpposite(currentCam)!,
+          _cameraArrange.getOpposite(cameraConfig.currentCam)!,
         );
         if (newController == null) {
           emit(const CameraState.error());
@@ -76,10 +80,13 @@ class CameraCubit extends Cubit<CameraState> {
         }
         emit(
           CameraState.loaded(
-            controller: newController,
-            flashMode: FlashMode.off,
-            currentCam: _cameraArrange.getOpposite(currentCam)!,
-            hasMultiCam: _cameraArrange.hasMulticam,
+            cameraConfig: cameraConfig.copyWith(
+              controller: newController,
+              currentCam: _cameraArrange.getOpposite(
+                cameraConfig.currentCam,
+              )!,
+              hasMultiCam: _cameraArrange.hasMulticam,
+            ),
           ),
         );
       },
@@ -88,20 +95,13 @@ class CameraCubit extends Cubit<CameraState> {
 
   Future<void> setFlashMode() async {
     await state.whenOrNull(
-      loaded: (controller, flashMode, currentCam, hasMultiCam) async {
-        controller.setFlashMode(
-          flashMode == FlashMode.always ? FlashMode.off : FlashMode.always,
+      loaded: (cameraConfig) async {
+        cameraConfig.controller.setFlashMode(
+          cameraConfig.flashMode == FlashMode.always
+              ? FlashMode.off
+              : FlashMode.always,
         );
-        emit(
-          CameraState.loaded(
-            controller: controller,
-            flashMode: flashMode == FlashMode.always
-                ? FlashMode.off
-                : FlashMode.always,
-            currentCam: currentCam,
-            hasMultiCam: hasMultiCam,
-          ),
-        );
+        emit(CameraState.loaded(cameraConfig: cameraConfig));
       },
     );
   }
@@ -129,8 +129,8 @@ class CameraCubit extends Cubit<CameraState> {
   @override
   Future<void> close() async {
     state.whenOrNull(
-      loaded: (controller, _, __, ___) {
-        controller.dispose();
+      loaded: (cameraConfig) {
+        cameraConfig.controller.dispose();
       },
     );
     super.close();

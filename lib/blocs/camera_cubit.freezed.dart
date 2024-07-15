@@ -19,10 +19,7 @@ mixin _$CameraState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(CameraController controller, FlashMode flashMode,
-            CameraDescription currentCam, bool hasMultiCam)
-        loaded,
-    required TResult Function(File photo) captured,
+    required TResult Function(CameraConfig cameraConfig) loaded,
     required TResult Function() error,
     required TResult Function() changing,
   }) =>
@@ -30,10 +27,7 @@ mixin _$CameraState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(CameraController controller, FlashMode flashMode,
-            CameraDescription currentCam, bool hasMultiCam)?
-        loaded,
-    TResult Function(File photo)? captured,
+    TResult Function(CameraConfig cameraConfig)? loaded,
     TResult Function()? error,
     TResult Function()? changing,
   }) =>
@@ -41,10 +35,7 @@ mixin _$CameraState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(CameraController controller, FlashMode flashMode,
-            CameraDescription currentCam, bool hasMultiCam)?
-        loaded,
-    TResult Function(File photo)? captured,
+    TResult Function(CameraConfig cameraConfig)? loaded,
     TResult Function()? error,
     TResult Function()? changing,
     required TResult orElse(),
@@ -54,7 +45,6 @@ mixin _$CameraState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Captured value) captured,
     required TResult Function(_Error value) error,
     required TResult Function(_Changing value) changing,
   }) =>
@@ -63,7 +53,6 @@ mixin _$CameraState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_Captured value)? captured,
     TResult Function(_Error value)? error,
     TResult Function(_Changing value)? changing,
   }) =>
@@ -72,7 +61,6 @@ mixin _$CameraState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_Captured value)? captured,
     TResult Function(_Error value)? error,
     TResult Function(_Changing value)? changing,
     required TResult orElse(),
@@ -136,10 +124,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(CameraController controller, FlashMode flashMode,
-            CameraDescription currentCam, bool hasMultiCam)
-        loaded,
-    required TResult Function(File photo) captured,
+    required TResult Function(CameraConfig cameraConfig) loaded,
     required TResult Function() error,
     required TResult Function() changing,
   }) {
@@ -150,10 +135,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(CameraController controller, FlashMode flashMode,
-            CameraDescription currentCam, bool hasMultiCam)?
-        loaded,
-    TResult Function(File photo)? captured,
+    TResult Function(CameraConfig cameraConfig)? loaded,
     TResult Function()? error,
     TResult Function()? changing,
   }) {
@@ -164,10 +146,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(CameraController controller, FlashMode flashMode,
-            CameraDescription currentCam, bool hasMultiCam)?
-        loaded,
-    TResult Function(File photo)? captured,
+    TResult Function(CameraConfig cameraConfig)? loaded,
     TResult Function()? error,
     TResult Function()? changing,
     required TResult orElse(),
@@ -183,7 +162,6 @@ class _$_Loading implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Captured value) captured,
     required TResult Function(_Error value) error,
     required TResult Function(_Changing value) changing,
   }) {
@@ -195,7 +173,6 @@ class _$_Loading implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_Captured value)? captured,
     TResult Function(_Error value)? error,
     TResult Function(_Changing value)? changing,
   }) {
@@ -207,7 +184,6 @@ class _$_Loading implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_Captured value)? captured,
     TResult Function(_Error value)? error,
     TResult Function(_Changing value)? changing,
     required TResult orElse(),
@@ -227,11 +203,7 @@ abstract class _Loading implements CameraState {
 abstract class _$$_LoadedCopyWith<$Res> {
   factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
       __$$_LoadedCopyWithImpl<$Res>;
-  $Res call(
-      {CameraController controller,
-      FlashMode flashMode,
-      CameraDescription currentCam,
-      bool hasMultiCam});
+  $Res call({CameraConfig cameraConfig});
 }
 
 /// @nodoc
@@ -245,28 +217,13 @@ class __$$_LoadedCopyWithImpl<$Res> extends _$CameraStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? controller = freezed,
-    Object? flashMode = freezed,
-    Object? currentCam = freezed,
-    Object? hasMultiCam = freezed,
+    Object? cameraConfig = freezed,
   }) {
     return _then(_$_Loaded(
-      controller: controller == freezed
-          ? _value.controller
-          : controller // ignore: cast_nullable_to_non_nullable
-              as CameraController,
-      flashMode: flashMode == freezed
-          ? _value.flashMode
-          : flashMode // ignore: cast_nullable_to_non_nullable
-              as FlashMode,
-      currentCam: currentCam == freezed
-          ? _value.currentCam
-          : currentCam // ignore: cast_nullable_to_non_nullable
-              as CameraDescription,
-      hasMultiCam: hasMultiCam == freezed
-          ? _value.hasMultiCam
-          : hasMultiCam // ignore: cast_nullable_to_non_nullable
-              as bool,
+      cameraConfig: cameraConfig == freezed
+          ? _value.cameraConfig
+          : cameraConfig // ignore: cast_nullable_to_non_nullable
+              as CameraConfig,
     ));
   }
 }
@@ -274,24 +231,14 @@ class __$$_LoadedCopyWithImpl<$Res> extends _$CameraStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Loaded implements _Loaded {
-  const _$_Loaded(
-      {required this.controller,
-      required this.flashMode,
-      required this.currentCam,
-      required this.hasMultiCam});
+  const _$_Loaded({required this.cameraConfig});
 
   @override
-  final CameraController controller;
-  @override
-  final FlashMode flashMode;
-  @override
-  final CameraDescription currentCam;
-  @override
-  final bool hasMultiCam;
+  final CameraConfig cameraConfig;
 
   @override
   String toString() {
-    return 'CameraState.loaded(controller: $controller, flashMode: $flashMode, currentCam: $currentCam, hasMultiCam: $hasMultiCam)';
+    return 'CameraState.loaded(cameraConfig: $cameraConfig)';
   }
 
   @override
@@ -300,21 +247,12 @@ class _$_Loaded implements _Loaded {
         (other.runtimeType == runtimeType &&
             other is _$_Loaded &&
             const DeepCollectionEquality()
-                .equals(other.controller, controller) &&
-            const DeepCollectionEquality().equals(other.flashMode, flashMode) &&
-            const DeepCollectionEquality()
-                .equals(other.currentCam, currentCam) &&
-            const DeepCollectionEquality()
-                .equals(other.hasMultiCam, hasMultiCam));
+                .equals(other.cameraConfig, cameraConfig));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(controller),
-      const DeepCollectionEquality().hash(flashMode),
-      const DeepCollectionEquality().hash(currentCam),
-      const DeepCollectionEquality().hash(hasMultiCam));
+      runtimeType, const DeepCollectionEquality().hash(cameraConfig));
 
   @JsonKey(ignore: true)
   @override
@@ -325,44 +263,35 @@ class _$_Loaded implements _Loaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(CameraController controller, FlashMode flashMode,
-            CameraDescription currentCam, bool hasMultiCam)
-        loaded,
-    required TResult Function(File photo) captured,
+    required TResult Function(CameraConfig cameraConfig) loaded,
     required TResult Function() error,
     required TResult Function() changing,
   }) {
-    return loaded(controller, flashMode, currentCam, hasMultiCam);
+    return loaded(cameraConfig);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(CameraController controller, FlashMode flashMode,
-            CameraDescription currentCam, bool hasMultiCam)?
-        loaded,
-    TResult Function(File photo)? captured,
+    TResult Function(CameraConfig cameraConfig)? loaded,
     TResult Function()? error,
     TResult Function()? changing,
   }) {
-    return loaded?.call(controller, flashMode, currentCam, hasMultiCam);
+    return loaded?.call(cameraConfig);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(CameraController controller, FlashMode flashMode,
-            CameraDescription currentCam, bool hasMultiCam)?
-        loaded,
-    TResult Function(File photo)? captured,
+    TResult Function(CameraConfig cameraConfig)? loaded,
     TResult Function()? error,
     TResult Function()? changing,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(controller, flashMode, currentCam, hasMultiCam);
+      return loaded(cameraConfig);
     }
     return orElse();
   }
@@ -372,7 +301,6 @@ class _$_Loaded implements _Loaded {
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Captured value) captured,
     required TResult Function(_Error value) error,
     required TResult Function(_Changing value) changing,
   }) {
@@ -384,7 +312,6 @@ class _$_Loaded implements _Loaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_Captured value)? captured,
     TResult Function(_Error value)? error,
     TResult Function(_Changing value)? changing,
   }) {
@@ -396,7 +323,6 @@ class _$_Loaded implements _Loaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_Captured value)? captured,
     TResult Function(_Error value)? error,
     TResult Function(_Changing value)? changing,
     required TResult orElse(),
@@ -409,175 +335,11 @@ class _$_Loaded implements _Loaded {
 }
 
 abstract class _Loaded implements CameraState {
-  const factory _Loaded(
-      {required final CameraController controller,
-      required final FlashMode flashMode,
-      required final CameraDescription currentCam,
-      required final bool hasMultiCam}) = _$_Loaded;
+  const factory _Loaded({required final CameraConfig cameraConfig}) = _$_Loaded;
 
-  CameraController get controller;
-  FlashMode get flashMode;
-  CameraDescription get currentCam;
-  bool get hasMultiCam;
+  CameraConfig get cameraConfig;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_CapturedCopyWith<$Res> {
-  factory _$$_CapturedCopyWith(
-          _$_Captured value, $Res Function(_$_Captured) then) =
-      __$$_CapturedCopyWithImpl<$Res>;
-  $Res call({File photo});
-}
-
-/// @nodoc
-class __$$_CapturedCopyWithImpl<$Res> extends _$CameraStateCopyWithImpl<$Res>
-    implements _$$_CapturedCopyWith<$Res> {
-  __$$_CapturedCopyWithImpl(
-      _$_Captured _value, $Res Function(_$_Captured) _then)
-      : super(_value, (v) => _then(v as _$_Captured));
-
-  @override
-  _$_Captured get _value => super._value as _$_Captured;
-
-  @override
-  $Res call({
-    Object? photo = freezed,
-  }) {
-    return _then(_$_Captured(
-      photo: photo == freezed
-          ? _value.photo
-          : photo // ignore: cast_nullable_to_non_nullable
-              as File,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_Captured implements _Captured {
-  const _$_Captured({required this.photo});
-
-  @override
-  final File photo;
-
-  @override
-  String toString() {
-    return 'CameraState.captured(photo: $photo)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Captured &&
-            const DeepCollectionEquality().equals(other.photo, photo));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(photo));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_CapturedCopyWith<_$_Captured> get copyWith =>
-      __$$_CapturedCopyWithImpl<_$_Captured>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(CameraController controller, FlashMode flashMode,
-            CameraDescription currentCam, bool hasMultiCam)
-        loaded,
-    required TResult Function(File photo) captured,
-    required TResult Function() error,
-    required TResult Function() changing,
-  }) {
-    return captured(photo);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(CameraController controller, FlashMode flashMode,
-            CameraDescription currentCam, bool hasMultiCam)?
-        loaded,
-    TResult Function(File photo)? captured,
-    TResult Function()? error,
-    TResult Function()? changing,
-  }) {
-    return captured?.call(photo);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(CameraController controller, FlashMode flashMode,
-            CameraDescription currentCam, bool hasMultiCam)?
-        loaded,
-    TResult Function(File photo)? captured,
-    TResult Function()? error,
-    TResult Function()? changing,
-    required TResult orElse(),
-  }) {
-    if (captured != null) {
-      return captured(photo);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Captured value) captured,
-    required TResult Function(_Error value) error,
-    required TResult Function(_Changing value) changing,
-  }) {
-    return captured(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Captured value)? captured,
-    TResult Function(_Error value)? error,
-    TResult Function(_Changing value)? changing,
-  }) {
-    return captured?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Captured value)? captured,
-    TResult Function(_Error value)? error,
-    TResult Function(_Changing value)? changing,
-    required TResult orElse(),
-  }) {
-    if (captured != null) {
-      return captured(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Captured implements CameraState {
-  const factory _Captured({required final File photo}) = _$_Captured;
-
-  File get photo;
-  @JsonKey(ignore: true)
-  _$$_CapturedCopyWith<_$_Captured> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -620,10 +382,7 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(CameraController controller, FlashMode flashMode,
-            CameraDescription currentCam, bool hasMultiCam)
-        loaded,
-    required TResult Function(File photo) captured,
+    required TResult Function(CameraConfig cameraConfig) loaded,
     required TResult Function() error,
     required TResult Function() changing,
   }) {
@@ -634,10 +393,7 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(CameraController controller, FlashMode flashMode,
-            CameraDescription currentCam, bool hasMultiCam)?
-        loaded,
-    TResult Function(File photo)? captured,
+    TResult Function(CameraConfig cameraConfig)? loaded,
     TResult Function()? error,
     TResult Function()? changing,
   }) {
@@ -648,10 +404,7 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(CameraController controller, FlashMode flashMode,
-            CameraDescription currentCam, bool hasMultiCam)?
-        loaded,
-    TResult Function(File photo)? captured,
+    TResult Function(CameraConfig cameraConfig)? loaded,
     TResult Function()? error,
     TResult Function()? changing,
     required TResult orElse(),
@@ -667,7 +420,6 @@ class _$_Error implements _Error {
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Captured value) captured,
     required TResult Function(_Error value) error,
     required TResult Function(_Changing value) changing,
   }) {
@@ -679,7 +431,6 @@ class _$_Error implements _Error {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_Captured value)? captured,
     TResult Function(_Error value)? error,
     TResult Function(_Changing value)? changing,
   }) {
@@ -691,7 +442,6 @@ class _$_Error implements _Error {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_Captured value)? captured,
     TResult Function(_Error value)? error,
     TResult Function(_Changing value)? changing,
     required TResult orElse(),
@@ -748,10 +498,7 @@ class _$_Changing implements _Changing {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(CameraController controller, FlashMode flashMode,
-            CameraDescription currentCam, bool hasMultiCam)
-        loaded,
-    required TResult Function(File photo) captured,
+    required TResult Function(CameraConfig cameraConfig) loaded,
     required TResult Function() error,
     required TResult Function() changing,
   }) {
@@ -762,10 +509,7 @@ class _$_Changing implements _Changing {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(CameraController controller, FlashMode flashMode,
-            CameraDescription currentCam, bool hasMultiCam)?
-        loaded,
-    TResult Function(File photo)? captured,
+    TResult Function(CameraConfig cameraConfig)? loaded,
     TResult Function()? error,
     TResult Function()? changing,
   }) {
@@ -776,10 +520,7 @@ class _$_Changing implements _Changing {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(CameraController controller, FlashMode flashMode,
-            CameraDescription currentCam, bool hasMultiCam)?
-        loaded,
-    TResult Function(File photo)? captured,
+    TResult Function(CameraConfig cameraConfig)? loaded,
     TResult Function()? error,
     TResult Function()? changing,
     required TResult orElse(),
@@ -795,7 +536,6 @@ class _$_Changing implements _Changing {
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Captured value) captured,
     required TResult Function(_Error value) error,
     required TResult Function(_Changing value) changing,
   }) {
@@ -807,7 +547,6 @@ class _$_Changing implements _Changing {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_Captured value)? captured,
     TResult Function(_Error value)? error,
     TResult Function(_Changing value)? changing,
   }) {
@@ -819,7 +558,6 @@ class _$_Changing implements _Changing {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_Captured value)? captured,
     TResult Function(_Error value)? error,
     TResult Function(_Changing value)? changing,
     required TResult orElse(),
